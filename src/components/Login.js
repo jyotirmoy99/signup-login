@@ -1,0 +1,79 @@
+import React, { useState } from "react";
+
+function Login(props) {
+  const [user, setUser] = useState([{ email: "", password: "" }]);
+
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    console.warn("data", user);
+    let item = user;
+    let result = await fetch("http://1553d946f492.ngrok.io/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+    result = await result.json();
+    localStorage.setItem("user-info", JSON.stringify(result));
+    props.history.push("/profile");
+  }
+  const registerPage = () => {
+    props.history.push("/");
+  };
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12 p-5">
+          <div className="row">
+            <div className="col-md-6 mr-auto ml-auto">
+              <form>
+                <div className="form-group p-5">
+                  <h3 className="text-center">Login</h3>
+                  <br />
+                  <input
+                    type="email"
+                    placeholder="Enter email"
+                    onChange={(e) =>
+                      setUser({ ...user, email: e.target.value })
+                    }
+                    className="form-control"
+                  ></input>
+                  <br></br>
+                  <br></br>
+                  <input
+                    type="password"
+                    placeholder="Enter password"
+                    onChange={(e) =>
+                      setUser({ ...user, password: e.target.value })
+                    }
+                    className="form-control"
+                  ></input>
+                  <br></br>
+                  <br></br>
+                  <span>
+                    <button
+                      onClick={handleLogin}
+                      // disabled={!user.email || !user.password}
+                      className="btn btn-primary mr-2"
+                    >
+                      Login
+                    </button>
+                    <button onClick={registerPage} className="btn btn-info">
+                      Signup
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
