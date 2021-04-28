@@ -9,7 +9,7 @@ function Login(props) {
 
     console.warn("data", user);
     let item = user;
-    let result = await fetch(url + "/login", {
+    let result = await fetch(url + "/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,12 +64,14 @@ function Login(props) {
                     >
                       Login
                     </button>
-                    <button onClick={registerPage} className="btn btn-info">
-                      Signup
-                    </button>
                   </span>
                 </div>
               </form>
+              <br />
+              <small>Create a new Account? </small>{" "}
+              <button onClick={registerPage} className="btn btn-info">
+                Register
+              </button>
             </div>
           </div>
         </div>

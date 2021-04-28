@@ -41,7 +41,7 @@ function PostForm(props) {
 
     let item = data;
     console.warn(item);
-    let result = await fetch(url + "/signup", {
+    let result = await fetch(url + "/auth/signup", {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -156,14 +156,15 @@ function PostForm(props) {
         />
         <br />
         <br />
-        <br />
         <span>
           <button className="btn btn-primary mr-2">Signup</button>
-          <button className="btn btn-info" onClick={loginPage}>
-            Login
-          </button>
         </span>
       </form>
+      <br />
+      <small>Already have an Account?</small>{" "}
+      <button className="btn btn-info" onClick={loginPage}>
+        Login
+      </button>
     </div>
   );
 }
