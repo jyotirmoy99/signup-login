@@ -1,5 +1,6 @@
 // import axios from "axios";
 import React, { useState } from "react";
+import { url } from "./Service";
 
 function PostForm(props) {
   // const url = "https://jsonplaceholder.typicode.com/users";
@@ -40,7 +41,7 @@ function PostForm(props) {
 
     let item = data;
     console.warn(item);
-    let result = await fetch("http://1553d946f492.ngrok.io/signup", {
+    let result = await fetch(url + "/signup", {
       method: "POST",
       body: JSON.stringify(item),
       headers: {

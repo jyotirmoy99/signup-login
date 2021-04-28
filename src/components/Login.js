@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { url } from "./Service";
 
 function Login(props) {
   const [user, setUser] = useState([{ email: "", password: "" }]);
@@ -8,7 +9,7 @@ function Login(props) {
 
     console.warn("data", user);
     let item = user;
-    let result = await fetch("http://1553d946f492.ngrok.io/login", {
+    let result = await fetch(url + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +18,8 @@ function Login(props) {
       body: JSON.stringify(item),
     });
     result = await result.json();
-    localStorage.setItem("user-info", JSON.stringify(result));
+    localStorage.setItem("token", result.accesstoken);
+    localStorage.setItem("email", result.email);
     props.history.push("/profile");
   }
   const registerPage = () => {
