@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { url } from "./Service";
+import { NavLink } from "react-router-dom";
 
 function Login(props) {
   const [user, setUser] = useState([{ email: "", password: "" }]);
@@ -9,7 +10,7 @@ function Login(props) {
 
     console.warn("data", user);
     let item = user;
-    let result = await fetch(url + "/auth/signin", {
+    let result = await fetch(url + "/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,6 +68,10 @@ function Login(props) {
                   </span>
                 </div>
               </form>
+              <NavLink to="/forgot">
+                <small>Forgot Password?</small>
+              </NavLink>
+              <br />
               <br />
               <small>Create a new Account? </small>{" "}
               <button onClick={registerPage} className="btn btn-info">

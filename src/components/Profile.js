@@ -8,7 +8,7 @@ function Profile(props) {
   //get data
   const getData = () => {
     axios
-      .get(url + "/menu/myprofile", {
+      .get(url + "/profile/showprofile", {
         headers: {
           accesstoken: localStorage.getItem("token"),
 
@@ -18,7 +18,7 @@ function Profile(props) {
       .then((res) => {
         if (res["data"].status === 200) {
           console.log(res);
-          setData(res["data"].data);
+          setData(res["data"].result);
           console.log(data);
         }
       });
@@ -27,7 +27,7 @@ function Profile(props) {
   //logout
   const logout = () => {
     axios
-      .post(url + "/auth/signout", [], {
+      .post(url + "/auth/logout", [], {
         headers: {
           accesstoken: localStorage.getItem("token"),
 
