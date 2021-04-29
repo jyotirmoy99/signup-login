@@ -19,7 +19,6 @@ function Profile(props) {
         if (res["data"].status === 200) {
           console.log(res);
           setData(res["data"].result);
-          console.log(data);
         }
       });
   };

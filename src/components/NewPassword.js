@@ -7,37 +7,26 @@ const NewPassword = () => {
   const [data, setData] = useState({
     temppassword: "",
     newpassword: "",
-    cPass: "",
+    cpassword: "",
   });
   const history = useHistory();
 
-  let tok = localStorage.getItem("token");
-  let email = localStorage.getItem("email");
-
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     let path = "/";
-  //     history.push(path);
-  //     alert("Password Changed Successfully..");
-  //   };
-
+  //submit
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(url + "/password/resetpassword", data, {
         headers: {
-          accesstoken: tok,
-          email: email,
+          accesstoken: localStorage.getItem("token"),
+          email: localStorage.getItem("email"),
         },
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
           localStorage.getItem("token", res["data"].accesstoken);
           localStorage.getItem("email", res["data"].email);
           let path = "/login";
           history.push(path);
-          //alert("Password Changed Successfully..");
         }
         console.log(res);
       });
@@ -51,7 +40,7 @@ const NewPassword = () => {
           <br />
           <br />
           <input
-            type="password"
+            type="text"
             placeholder="Enter OTP"
             value={data.temppassword}
             name="password"
@@ -71,9 +60,9 @@ const NewPassword = () => {
           <input
             type="password"
             placeholder="Enter Confirm Password"
-            value={data.cPass}
+            value={data.cpassword}
             name="password"
-            onChange={(e) => setData({ ...data, cPass: e.target.value })}
+            onChange={(e) => setData({ ...data, cpassword: e.target.value })}
           />
 
           <br />

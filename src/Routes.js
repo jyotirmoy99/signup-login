@@ -37,11 +37,6 @@ function Routes() {
             path="/reset"
             render={(e, props) => <NewPassword {...e} data={props} />}
           />
-          {/* <Route
-            exact={true}
-            path="/otp"
-            render={(e, props) => <EnterOTP {...e} data={props} />}
-          /> */}
         </Switch>
       </BrowserRouter>
     </div>
